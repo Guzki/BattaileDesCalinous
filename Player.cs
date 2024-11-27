@@ -1,15 +1,15 @@
 ﻿
 namespace BattaileDesCalinous
 {
-    internal class Player
+    public class Player
     {
-        internal int health;
-        internal int attackPower;
-        internal int defensePower;
-        internal string? name;
-        internal int score;
-        internal List<Item> items;
-        internal string status;
+        public int health;
+		public int attackPower;
+		public int defensePower;
+		public string? name;
+		public int score;
+		public List<Item> items;
+		public string status;
 
 
         public Player(string? name) 
@@ -23,7 +23,7 @@ namespace BattaileDesCalinous
 
         }
 
-        private void updatePlayerStatus()
+        public void updatePlayerStatus()
         {
             status = $"{name}\n" +
                 $"Score: {score}\n" +
@@ -55,6 +55,11 @@ namespace BattaileDesCalinous
             items.Remove(item);
             //update status
             updatePlayerStatus();
+        }
+
+        public void attack(Monster monster)
+        {
+            monster.health = monster.health - attackPower;
         }
     }
 }

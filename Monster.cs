@@ -37,5 +37,20 @@ namespace BattaileDesCalinous
                 attackPower = 15;
             }
         }
+
+        public void attack(Player player)
+        {
+            //Damage to Player 
+            //damage = damage power - player defense
+            int damage = attackPower - player.defensePower;
+            player.health = player.health - damage;
+            player.updatePlayerStatus();
+
+        }
+
+		public override string ToString()
+		{
+			return Name;
+		}
     }
 }

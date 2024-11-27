@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BattaileDesCalinous
 {
-    internal class Item
+	public class Item
     {
         public string name;
         public int buffAmount;
@@ -31,7 +31,7 @@ namespace BattaileDesCalinous
 
         }
 
-        internal void applyEffect(Player player)
+		public void applyEffect(Player player)
         {
             player.health += healAmount;
             player.attackPower += buffAmount;

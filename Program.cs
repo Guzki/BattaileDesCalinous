@@ -6,7 +6,7 @@ namespace BattaileDesCalinous
     {
         static void Main(string[] args)
         {
-            PlayerTest();
+            MonsterPlayerAttackTest();
         }
 
         /// <summary>
@@ -69,6 +69,36 @@ namespace BattaileDesCalinous
             Console.WriteLine(player.defensePower);
         }
 
+
+        static void MonsterPlayerAttackTest()
+        {
+            //Create a joueur
+            Player player = new Player("Winner");
+            //Create un monster
+            Monster monster = new Monster();
+
+            Console.WriteLine(monster);
+
+            //status
+            Console.WriteLine(player.status);
+            Console.WriteLine($"Monster Health: {monster.health}");
+
+            //joueur attack
+            Console.WriteLine("Player is attacking monster.");
+            player.attack(monster);
+
+			Console.WriteLine(player.status);
+			Console.WriteLine($"Monster Health: {monster.health}");
+            //status
+
+            //monster attack
+            monster.attack(player);
+
+            //status
+            Console.WriteLine("Monster is attacking player;");
+			Console.WriteLine(player.status);
+			Console.WriteLine($"Monster Health: {monster.health}");
+		}
 
 
     }
