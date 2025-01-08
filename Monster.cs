@@ -38,13 +38,13 @@ namespace BattaileDesCalinous
             }
         }
 
-        public void attack(Player player)
+        public void attack(Pet pet)
         {
             //Damage to Player 
             //damage = damage power - player defense
-            int damage = attackPower - player.defensePower;
-            player.health = player.health - damage;
-            player.updatePlayerStatus();
+            int damage = attackPower - pet.defensePower;
+            pet.health = pet.health - damage;
+            pet.updatePlayerStatus();
 
         }
 

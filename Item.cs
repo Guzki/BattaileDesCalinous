@@ -31,7 +31,7 @@ namespace BattaileDesCalinous
 
         }
 
-		public void applyEffect(Player player)
+		public void applyEffect(Pet player)
         {
             player.health += healAmount;
             player.attackPower += buffAmount;

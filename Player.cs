@@ -1,65 +1,57 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace BattaileDesCalinous
 {
-    public class Player
-    {
-        public int health;
-		public int attackPower;
-		public int defensePower;
-		public string? name;
-		public int score;
+	public class Player
+	{
+		public string name;
 		public List<Item> items;
-		public string status;
+		public List<Pet> pets;
+		public Pet currentPet;
+		public int score;
 
+		public Player(string name)
+		{
+			this.name = name;
+			items = new List<Item>();
+			pets = new List<Pet>();
+			currentPet = new Pet("Rat Child");
+			pets.Add(currentPet);
+			score = 0;
+		}
 
-        public Player(string? name) 
-        {
-            health = 100;
-            attackPower = 10;
-            defensePower = 0;
-            this.name = name;
-            items = new List<Item>();
-            updatePlayerStatus();
+		public override string ToString()
+		{
+			return $"{name}\n" +
+				$"Pets: {pets.Count}\n"+
+				$"Items: {items.Count}\n" +
+				$"Current Pet: {currentPet.name}\n" +
+				$"Score: {score}";
+		}
 
-        }
+		public void AddPet(Pet pet) {
+			pets.Add(pet);
+		}
 
-        public void updatePlayerStatus()
-        {
-            status = $"{name}\n" +
-                $"Score: {score}\n" +
-                $"Santé: {health}\n" +
-                $"Attack: {attackPower}\n" +
-                $"Defense: {defensePower}\n" +
-                $"Items: {items.Count}\n";
+		public void ChangePet(Pet pet)
+		{
+			currentPet = pet;
+		}
 
-            if (items.Count > 0)
-            {
-                foreach (Item item in items)
-                {
-                    status += item.name + "\n";
-                }
-            }
-        }
+		public void GiveItem(Item item, Pet pet)
+		{
+			pet.useItem(item);
+			items.Remove(item);
 
-        public void pickUpItem(Item item)
-        {
-            items.Add(item);
-            updatePlayerStatus();
-        }
+		}
 
-        public void useItem(Item item) 
-        {
-            //apply Effect
-            item.applyEffect(this);
-            //get rid of it
-            items.Remove(item);
-            //update status
-            updatePlayerStatus();
-        }
-
-        public void attack(Monster monster)
-        {
-            monster.health = monster.health - attackPower;
-        }
-    }
+		public void pickUpItem(Item item)
+		{
+			items.Add(item);
+		}
+	}
 }

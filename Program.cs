@@ -17,40 +17,6 @@ namespace BattaileDesCalinous
             game.end();
         }
 
-        /// <summary>
-        /// Cette fonction test système d'inventaire du joueur. 
-        /// Un joueur est créé.
-        /// Il ramasse 3 items.
-        /// Il consomme 3 items.
-        /// The status est affiché après chaque exécution. 
-        /// </summary>
-        private static void PlayerTest()
-        {
-            Player player = new Player("Greg");
-            Console.WriteLine(player.status);
-
-            Item i = new Item();
-            player.pickUpItem(i);
-            Console.WriteLine(player.status);
-
-            Item i2 = new Item();
-            player.pickUpItem(i2);
-            Console.WriteLine(player.status);
-
-            Item i3 = new Item();
-            player.pickUpItem(i3);
-            Console.WriteLine(player.status);
-
-            player.useItem(i3);
-            Console.WriteLine(player.status);
-
-            player.useItem(i2);
-            Console.WriteLine(player.status);
-
-            player.useItem(i);
-            Console.WriteLine(player.status);
-
-        }
 
         /// <summary>
         /// Cette fonction test la class Item.
@@ -63,7 +29,7 @@ namespace BattaileDesCalinous
             Console.WriteLine(item.buffAmount);
             Console.WriteLine(item.healAmount);
 
-            Player player = new Player("Big Dude");
+            Pet player = new Pet("Big Dude");
             Console.WriteLine("Joueur:");
             Console.WriteLine(player.health);
             Console.WriteLine(player.attackPower);
@@ -81,7 +47,7 @@ namespace BattaileDesCalinous
         static void MonsterPlayerAttackTest()
         {
             //Create a joueur
-            Player player = new Player("Winner");
+            Pet player = new Pet("Winner");
             //Create un monster
             Monster monster = new Monster();
 

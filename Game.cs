@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BattaileDesCalinous
 {
-	internal class Game
+	public class Game
 	{
 		public Player player;
 		public bool isRunning;
@@ -21,7 +21,7 @@ namespace BattaileDesCalinous
 
 		public void start()
 		{
-			Console.WriteLine("#######Battailles de Bestiolles sans bestiolles#######");
+			Console.WriteLine("#######Battailles de Bestiolles#######");
 			Console.WriteLine("Jeu créer par le club de Codage Franco-Niagara");
 			Console.WriteLine();
 			Console.WriteLine();
@@ -30,8 +30,7 @@ namespace BattaileDesCalinous
 			Console.WriteLine("Quel est ton nom?");
 			string nom = Console.ReadLine();
 			player.name = nom;
-			player.updatePlayerStatus();
-			Console.WriteLine(player.status);
+			Console.WriteLine(player);
 		}
 
 		public void end() 
@@ -51,12 +50,91 @@ namespace BattaileDesCalinous
 
 		public void playRound()
 		{
+			Console.Clear();
+			Console.WriteLine(player);
+			Console.WriteLine();
 			entrerDansUneSalle();
 		}
 
 		private void entrerDansUneSalle()
 		{
+			int num = random.Next(100);
 
+			if(num < 50)
+			{
+				salleDeMonstre();
+			} else if (num < 90)
+			{
+				salleDItem();
+			} else
+			{
+				salleDePet();
+			}
+		}
+
+		private void salleDePet()
+		{
+			Console.WriteLine("Tu est entrez dans une salle avec une bestiolle.");
+			Console.ReadKey(true);
+		}
+
+		private void salleDItem()
+		{
+			Console.WriteLine("Tu est entrez dans une salle avec un item.");
+			Item item = new Item();
+			player.pickUpItem(item);
+			Console.WriteLine($"Tu as ramasser une {item.name}");
+			Console.WriteLine("Touche une clès pour continuer.");
+			Console.ReadKey(true);
+		}
+
+		private void salleDeMonstre()
+		{
+			Monster monster = new Monster();
+			Console.WriteLine($"Tu est entrez dans une salle avec un {monster.Name}.");
+
+
+			while (monster.health > 0)
+			{
+				Console.WriteLine("Veux tu:");
+				Console.WriteLine($"1 - Attacker avec {player.currentPet.name}");
+				Console.WriteLine($"2 - Donner une potion a {player.currentPet.name}");
+				Console.WriteLine("3 - Changer de pet");
+
+				int reponse;
+				while (true)
+				{
+					try
+					{
+						reponse = Convert.ToInt16(Console.ReadLine());
+						if (reponse > 0 && reponse <= 3) break;
+						else Console.WriteLine("Entrez une réponse valide.");
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine("Entrez une réponse valide.");
+					}
+				}
+
+				switch (reponse)
+				{
+					case 1:
+						Console.WriteLine($"{player.currentPet.name} attack {monster.Name} pour {player.currentPet.attackPower} domage.");
+						player.currentPet.attack(monster);
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+				}
+
+
+
+
+			}
+
+
+			Console.ReadKey(true);
 		}
 	}
 }
