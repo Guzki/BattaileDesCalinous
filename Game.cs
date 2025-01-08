@@ -11,10 +11,12 @@ namespace BattaileDesCalinous
 	{
 		public Player player;
 		public bool isRunning;
+		private Random random;
 
 		public Game() {
 			player = new Player("DefaultName");
 			isRunning = true;
+			random = new Random();
 		}
 
 		public void start()
@@ -49,7 +51,12 @@ namespace BattaileDesCalinous
 
 		public void playRound()
 		{
-			throw new NotImplementedException();
+			entrerDansUneSalle();
+		}
+
+		private void entrerDansUneSalle()
+		{
+
 		}
 	}
 }
